@@ -4,11 +4,11 @@ import 'package:chapp/features/Auth/domain/entity/user_entity.dart';
 import 'package:chapp/features/Auth/domain/repository/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class Verify extends UseCase<UserEntity, VerifyParam> {
+class VerifyUseCase extends UseCase<UserEntity?, VerifyParam> {
   final AuthRepository repository;
-  Verify({required this.repository});
+  VerifyUseCase({required this.repository});
   @override
-  Future<Either<Failure, UserEntity>> call(VerifyParam params) async {
+  Future<Either<Failure, UserEntity?>> call(VerifyParam params) async {
     return await repository.verify(params.otp);
   }
 }
