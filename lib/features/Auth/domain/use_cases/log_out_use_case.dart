@@ -4,16 +4,12 @@ import 'package:chapp/features/Auth/domain/entity/user_entity.dart';
 import 'package:chapp/features/Auth/domain/repository/auth_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class VerifyUseCase extends UseCase<UserEntity?, VerifyParam> {
+class LogOutUseCase extends UseCase<void, NoParams> {
   final AuthRepository repository;
-  VerifyUseCase({required this.repository});
-  @override
-  Future<Either<Failure, UserEntity?>> call(VerifyParam params) async {
-    return await repository.verify(params.otp);
-  }
-}
+  LogOutUseCase({required this.repository});
 
-class VerifyParam {
-  String otp;
-  VerifyParam({required this.otp});
+  @override
+  Future<Either<Failure, void>> call(NoParams params) {
+    return repository.logOut();
+  }
 }
