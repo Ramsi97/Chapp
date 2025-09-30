@@ -27,17 +27,7 @@ void main() {
     // Dummy data for testing
     final userEntity = UserEntity(
       userId: "123",
-      name: "Test User",
-      username: "testuser",
       phoneNumber: "9876543210",
-      profilePic: "profile.png",
-      bio: "Hello",
-      isOnline: true,
-      lastActiveAt: DateTime.now(),
-      contacts: const [],
-      blockedUsers: const [],
-      settings: const {},
-      createdAt: DateTime.now(),
     );
 
     final newUser = NewUserEntity(

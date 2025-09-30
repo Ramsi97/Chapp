@@ -55,3 +55,10 @@ class UnknownFailure extends Failure with EquatableMixin {
   @override
   List<Object?> get props => [message];
 }
+
+class FirebaseFailure extends Failure with EquatableMixin {
+  FirebaseFailure([super.message = 'Firebase error occurred']);
+
+  @override
+  List<Object?> get props => [message];
+}
