@@ -48,7 +48,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
     try {
       await firebaseAuth.verifyPhoneNumber(
         phoneNumber: phoneNumber,
-        timeout: const Duration(seconds: 60),
+        timeout: const Duration(seconds: 30),
         verificationCompleted: (PhoneAuthCredential credential) async {
           if (!completer.isCompleted) {
             final UserCredential userCredential = await firebaseAuth
@@ -136,7 +136,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
         },
         codeAutoRetrievalTimeout: (String verificationId) {},
         phoneNumber: phoneNumber,
-        timeout: const Duration(seconds: 60),
+        timeout: const Duration(seconds: 30),
         forceResendingToken: forceResendingToken,
       );
       return completer.future;

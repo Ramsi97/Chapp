@@ -1,3 +1,4 @@
+import 'package:chapp/core/error/exception.dart';
 import 'package:chapp/core/error/failure.dart';
 import 'package:chapp/features/Auth/data/datasources/auth_local_data_source.dart';
 import 'package:chapp/features/Auth/data/datasources/auth_remote_data_source.dart';
@@ -46,8 +47,7 @@ class AuthRepositoryImpl extends AuthRepository {
         return Left(ServerFailure(e.message));
       } on FirebaseAuthException catch (e) {
         return Left(FirebaseFailure(e.message ?? "Login failed"));
-      }
-      catch (e) {
+      } catch (e) {
         return Left(UnknownFailure("Something went wrong"));
       }
     } else {
@@ -73,17 +73,23 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<Failure, OtpUserResult>> resendOtp(String phoneNumber, int? forceResendingToken) async {
-    if(await networkInfo.isConnected){
-      try{
-        final otpUserResultModel = await remoteDataSource.resendOtp(phoneNumber, forceResendingToken: forceResendingToken);
+  Future<Either<Failure, OtpUserResult>> resendOtp(
+    String phoneNumber,
+    int? forceResendingToken,
+  ) async {
+    if (await networkInfo.isConnected) {
+      try {
+        final otpUserResultModel = await remoteDataSource.resendOtp(
+          phoneNumber,
+          forceResendingToken: forceResendingToken,
+        );
         return Right(otpUserResultModel.toEntity());
-      } on FirebaseAuthException catch (e){
+      } on FirebaseAuthException catch (e) {
         return Left(FirebaseFailure(e.message ?? "Resend OTP failed"));
-      } catch (e){
+      } catch (e) {
         return Left(UnknownFailure("Something went wrong"));
       }
-    }else{
+    } else {
       return Left(NetworkFailure());
     }
   }
@@ -107,6 +113,18 @@ class AuthRepositoryImpl extends AuthRepository {
       }
     } else {
       return Left(NetworkFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> checkAuthenticated() async {
+    try {
+      final result = await localDataSource.checkAuthenticated();
+      return Right(result);
+    } on CacheFailure catch (e) {
+      return Left(CacheFailure(e.message));
+    } catch (e) {
+      return Left(UnknownFailure());
     }
   }
 }

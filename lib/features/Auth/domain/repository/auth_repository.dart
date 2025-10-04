@@ -15,4 +15,5 @@ abstract class AuthRepository {
     required String smsCode,
   });
   Future<Either<Failure, OtpUserResult>> resendOtp(String phoneNumber, int? forceResendingToken);
+  Future<Either<Failure, bool>> checkAuthenticated();
 }
