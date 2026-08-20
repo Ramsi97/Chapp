@@ -43,6 +43,23 @@ dependencies:
   cloud_firestore: ^6.0.2
   intl_phone_number_input: ^0.7.5
   bloc: ^9.0.1
+  get_it: ^8.2.0
+  flutter_bloc: ^9.1.1
+  image_picker: ^1.2.0
+  firebase_storage: ^13.0.0
+  cached_network_image: ^3.4.1
+  intl: ^0.20.2
+
+  # --- Self-hosted backend (replaces Firebase) ---
+  dio: ^5.7.0                    # HTTP client + auth interceptor
+  web_socket_channel: ^3.0.1    # realtime WebSocket
+  flutter_secure_storage: ^9.2.2 # JWT + userId at rest
+  # --- Rich chat features ---
+  record: ^5.1.2                # voice-note recording
+  just_audio: ^0.9.42           # voice-note playback
+  file_picker: ^8.1.6           # attach files
+  open_filex: ^4.5.0            # open downloaded files
+  permission_handler: ^11.3.1   # mic / storage permissions
 
 dev_dependencies:
   flutter_test:

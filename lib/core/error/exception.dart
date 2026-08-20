@@ -1,4 +1,4 @@
-/// ------------------- AUTH EXCEPTIONS -------------------
+// ------------------- AUTH EXCEPTIONS -------------------
 
 /// Thrown when Firebase Auth operation fails
 class AuthException implements Exception {

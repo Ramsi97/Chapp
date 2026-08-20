@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../domain/entity/user_entity.dart';
+import '../model/user_model.dart';
 
 abstract class AuthLocalDataSource {
   Future<void> cacheUser(UserEntity user);
@@ -14,21 +15,23 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
   AuthLocalDataSourceImpl({required this.firebaseAuth});
 
   @override
-  Future<void> cacheUser(UserEntity user) {
-    // TODO: implement cacheUser
-    throw UnimplementedError();
+  Future<void> cacheUser(UserEntity user) async {
+    // Firebase persists the auth session itself; nothing extra to cache.
   }
 
   @override
-  Future<UserEntity?> getCachedUser() {
-    // TODO: implement getCachedUser
-    throw UnimplementedError();
+  Future<UserEntity?> getCachedUser() async {
+    final user = firebaseAuth.currentUser;
+    if (user == null) return null;
+    return UserModel(
+      userId: user.uid,
+      phoneNumber: user.phoneNumber ?? '',
+    );
   }
 
   @override
-  Future<void> logOut() {
-    // TODO: implement logOut
-    throw UnimplementedError();
+  Future<void> logOut() async {
+    await firebaseAuth.signOut();
   }
 
   @override
@@ -36,12 +39,8 @@ class AuthLocalDataSourceImpl extends AuthLocalDataSource {
     try {
       final user = firebaseAuth.currentUser;
       return user != null;
-    } on FirebaseAuthException catch (e) {
-      return false;
     } catch (e) {
       return false;
     }
   }
-
-
 }

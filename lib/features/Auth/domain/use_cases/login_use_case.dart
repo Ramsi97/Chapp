@@ -2,7 +2,6 @@
 
 import 'package:chapp/core/use_case/use_case.dart';
 import 'package:chapp/features/Auth/domain/entity/otp_user_result.dart';
-import 'package:chapp/features/Auth/domain/entity/otp_verification_data.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failure.dart';

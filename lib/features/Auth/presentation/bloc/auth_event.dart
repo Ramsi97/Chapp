@@ -3,17 +3,15 @@ part of 'auth_bloc.dart';
 @immutable
 sealed class AuthEvent {}
 
-class AuthReset extends AuthEvent {}
-
 class AuthRequestOtp extends AuthEvent {
   final String phoneNumber;
   AuthRequestOtp(this.phoneNumber);
 }
 
 class AuthVerifyOtp extends AuthEvent {
-  final String otp;
   final String verificationId;
-  AuthVerifyOtp(this.otp, this.verificationId);
+  final String otp;
+  AuthVerifyOtp(this.verificationId, this.otp);
 }
 
 class AuthResendOtp extends AuthEvent {
@@ -24,4 +22,20 @@ class AuthResendOtp extends AuthEvent {
 
 class AuthCheckStatus extends AuthEvent {}
 
+/// Completes profile setup for a phone-verified user (writes users/{uid}).
+class AuthRegister extends AuthEvent {
+  final String name;
+  final String username;
+  final String? bio;
+  final String? imagePath;
+  AuthRegister({
+    required this.name,
+    required this.username,
+    this.bio,
+    this.imagePath,
+  });
+}
+
 class AuthLogout extends AuthEvent {}
+
+class AuthClearError extends AuthEvent {}
