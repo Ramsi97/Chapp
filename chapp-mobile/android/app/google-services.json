@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "989894716190",
+    "project_id": "chapp-99c50",
+    "storage_bucket": "chapp-99c50.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989894716190:android:63997a7ccf171829c3f70f",
+        "android_client_info": {
+          "package_name": "com.example.chapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAInSCXA34i70919slru1tbhAptpGTnJe0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
